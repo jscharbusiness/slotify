@@ -1,4 +1,5 @@
 <?php 
+	include('includes/config.php');
 	include('includes/classes/Account.php');
 	include('includes/classes/Constants.php');
 
@@ -39,23 +40,23 @@
 		<form action="register.php" method="POST" id="registerForm">
 			<h2>Login to your account</h2>
 			<p>
-				<?php echo $account->getError(Constants::usernameCharacters); ?>
+				<?php echo $account->getError(Constants::$usernameCharacters); ?>
 				<label for="username">Username</label>
 				<input type="text" id="username" name="username" placeholder="JohnSmith" value="<?php getInputValues("username") ?>" required>
 			</p>
 			<p>
-				<?php echo $account->getError(Constants::firstNameCharacters); ?>
+				<?php echo $account->getError(Constants::$firstNameCharacters); ?>
 				<label for="firstName">First Name</label>
 				<input type="text" id="firstName" name="firstName" placeholder="John" value="<?php getInputValues("firstName") ?>" required>
 			</p>
 			<p>
-				<?php echo $account->getError(Constants::lastNameCharacters); ?>
+				<?php echo $account->getError(Constants::$lastNameCharacters); ?>
 				<label for="lastName">Last Name</label>
 				<input type="text" id="lastName" name="lastName" placeholder="Smith" value="<?php getInputValues("lastName") ?>" required>
 			</p>
 			<p>
-				<?php echo $account->getError(Constants::emailsDoNotMatch); ?>
-				<?php echo $account->getError(Constants::emailInvalid); ?>
+				<?php echo $account->getError(Constants::$emailsDoNotMatch); ?>
+				<?php echo $account->getError(Constants::$emailInvalid); ?>
 				<label for="email">Email</label>
 				<input type="email" id="email" name="email" placeholder="john@smith.com" value="<?php getInputValues("email") ?>" required>
 			</p>
@@ -64,9 +65,9 @@
 				<input type="email2" id="email2" name="email2" placeholder="john@smith.com" value="<?php getInputValues("email2") ?>" required>
 			</p>
 			<p>
-				<?php echo $account->getError(Constants::passwordsDoNotMatch); ?>
-				<?php echo $account->getError(Constants::passwordNotAlphanumeric); ?>
-				<?php echo $account->getError(Constants::passwordCharacters); ?>
+				<?php echo $account->getError(Constants::$passwordsDoNotMatch); ?>
+				<?php echo $account->getError(Constants::$passwordNotAlphanumeric); ?>
+				<?php echo $account->getError(Constants::$passwordCharacters); ?>
 				<label for="password">Password</label>
 				<input type="password" id="password" name="password" required>
 			</p>

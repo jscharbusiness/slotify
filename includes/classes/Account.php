@@ -32,7 +32,7 @@
 		private function validateUsername($un) {
 
 			if (strlen($un) > 25 || strlen($un) < 5) {
-				array_push($this->errorArray, Constants::usernameCharacters);
+				array_push($this->errorArray, Constants::$usernameCharacters);
 				return;
 			}
 
@@ -41,26 +41,26 @@
 
 		private function validateFirstName($fn) {
 			if (strlen($fn) > 25 || strlen($fn) < 5) {
-				array_push($this->errorArray, Constants::firstNameCharacters);
+				array_push($this->errorArray, Constants::$firstNameCharacters);
 				return;
 			}
 		}
 
 		private function validateLastName($ln) {
 			if (strlen($ln) > 25 || strlen($ln) < 5) {
-				array_push($this->errorArray, Constants::lastNameCharacters);
+				array_push($this->errorArray, Constants::$lastNameCharacters);
 				return;
 			}
 		}
 
 		private function validateEmails($em, $em2) {
 			if ($em != $em2) {
-				array_push($this->errorArray, Constants::emailsDoNotMatch);
+				array_push($this->errorArray, Constants::$emailsDoNotMatch);
 				return;
 			}
 
 			if (!filter_var($em, FILTER_VALIDATE_EMAIL)) {
-				array_push($this->errorArray, Constants::emailInvalid);
+				array_push($this->errorArray, Constants::$emailInvalid);
 				return;
 			}
 
@@ -70,17 +70,17 @@
 		private function validatePasswords($pw, $pw2) {
 			
 			if ($pw != $pw2) {
-				array_push(	$this->errorArray, Constants::passwordsDoNotMatch);
+				array_push(	$this->errorArray, Constants::$passwordsDoNotMatch);
 				return;
 			}
 
 			if (preg_match('/[^A-Za-z0-9]/', $pw)) {
-				array_push(	$this->errorArray, Constants::passwordNotAlphanumeric);
+				array_push(	$this->errorArray, Constants::$passwordNotAlphanumeric);
 				return;
 			}
 
 			if (strlen($ln) > 30 || strlen($ln) < 5) {
-				array_push($this->errorArray, Constants::passwordCharacters);
+				array_push($this->errorArray, Constants::$passwordCharacters);
 				return;
 			}
 
