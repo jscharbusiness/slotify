@@ -1,9 +1,11 @@
 <?php 
 	class Account {
 
+		private $conn;
 		private $errorArray;
 	
-		public function __construct() {
+		public function __construct($conn) {
+			$this->conn = $conn;
 			$this->errorArray = array();
 		}
 
@@ -16,7 +18,7 @@
 
 			if (empty($this->errorArray)) {
 				// Insert into DB
-				return true;
+				return $this->insertUserDetails($un, $fn, $ln, $em, $pw);
 			} else {
 				return false;
 			}
@@ -27,6 +29,16 @@
 				$error = "";
 			}
 			return "<span class='errorMessage'>$error</span>";
+		}
+
+		public function insertUserDetails($un, $fn, $ln, $em, $pw) {
+			$encryptedPw = md5($pw);
+			$profilePic = 'assets/images/profile-pics/head_emerald.png';
+			$date = date('Y-m-d');
+
+			$result = mysqli_query($this->conn, "INSERT INTO users VALUES (NULL, '$un','$fn','$ln','$em','$encryptedPw','$date','$profilePic')");
+
+			return $result;
 		}
 
 		private function validateUsername($un) {
@@ -76,11 +88,6 @@
 
 			if (preg_match('/[^A-Za-z0-9]/', $pw)) {
 				array_push(	$this->errorArray, Constants::$passwordNotAlphanumeric);
-				return;
-			}
-
-			if (strlen($ln) > 30 || strlen($ln) < 5) {
-				array_push($this->errorArray, Constants::$passwordCharacters);
 				return;
 			}
 
