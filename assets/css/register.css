@@ -95,8 +95,13 @@ html, body {
 .hasAccountText span {
     font-weight: bold;
     font-size: 12px;
-}
+    cursor: pointer;
+} 
 
 .hasAccountText {
     text-align: center;
+}
+
+#registerForm, #loginForm {
+	display: none;
 }

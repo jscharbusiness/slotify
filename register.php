@@ -21,8 +21,31 @@
 	<meta charset="UTF-8">
 	<title>Slotify</title>
 	<link rel="stylesheet" href="assets/css/register.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script src="assets/js/register.js"></script>
 </head>
 <body>
+
+	<?php 
+		if (isset($_POST['registerButton'])) {
+			echo "<script>
+				$(document).ready(function(){
+					$('#loginForm').hide();
+					$('#registerForm').show();
+				});		
+			</script>";
+		} else {
+			echo "<script>
+				$(document).ready(function(){
+					$('#loginForm').show();
+					$('#registerForm').hide();
+				});		
+			</script>";
+		}
+	 ?>
+
 	<div id="background">
 		<div id="loginContainer">
 			<div id="inputContainer">
@@ -46,7 +69,7 @@
 				</form>
 
 				<form action="register.php" method="POST" id="registerForm">
-					<h2>Login to your account</h2>
+					<h2>Create your free account</h2>
 					<p>
 						<?php echo $account->getError(Constants::$usernameCharacters); ?>
 						<?php echo $account->getError(Constants::$usernameTaken); ?>
@@ -72,7 +95,7 @@
 					</p>
 					<p>
 						<label for="email2">Confirm Email</label>
-						<input type="email2" id="email2" name="email2" placeholder="john@smith.com" value="<?php getInputValues("email2") ?>" required>
+						<input type="email" id="email2" name="email2" placeholder="john@smith.com" value="<?php getInputValues("email2") ?>" required>
 					</p>
 					<p>
 						<?php echo $account->getError(Constants::$passwordsDoNotMatch); ?>
@@ -93,6 +116,10 @@
 					</div>
 				</form>
 
+			</div>
+			<div id="loginText">
+				<h1>Get great music, right now</h1>
+				<h2>Listen to loads of songs for free.</h2>
 			</div>
 		</div>
 	</div>
