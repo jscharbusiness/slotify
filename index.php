@@ -1,35 +1,28 @@
-<?php 
-include('includes/config.php');
+<?php include('includes/header.php'); ?>
+					
+<h1 class="pageHeadingBig">You Might Also Like</h1>
 
-// session_destroy();
+<div class="gridViewContainer">
+	
+	<?php 
+		$albumQuery = mysqli_query($conn, "SELECT * FROM albums ORDER BY RAND() LIMIT 10");
 
-if (isset($_SESSION['userLoggedIn'])) {
-	$username = $_SESSION['userLoggedIn'];
-} else {
-	header('Location: register.php');
-}
+		while($row = mysqli_fetch_array($albumQuery)) {
 
- ?>
+			echo '<div class="gridViewItem">
+				<a href="album.php?id='.$row['id'].'">
+					<img src="'.$row['artworkPath'].'" alt="Album cover">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Slotify</title>
-	<link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+					<div class="gridViewInfo">
+						'.$row['title'].'
+					</div>
+				</a>
 
-	<div id="mainContainer">
+			</div>';
 
-		<div id="topContainer">
-			<?php include('includes/navBarContainer.php'); ?>
-		</div>
+		}
+	 ?>
 
-		<?php include('includes/nowPlayingBar.php'); ?>
-	</div>
+</div>
 
-
-
-</body>
-</html>
+<?php include('includes/footer.php'); ?>
